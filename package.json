@@ -1,0 +1,17 @@
+{
+  "name": "1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start1": "node 1.js",
+    "start2": "node 2.js",
+    "start3": "node 3.js",
+    "start4": "node 4.js",
+    "start5": "node 5.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
