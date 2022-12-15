@@ -10,8 +10,13 @@
     "start2": "node 2.js",
     "start3": "node 3.js",
     "start4": "node 4.js",
-    "start5": "node 5.js"
+    "start5": "node 5.js",
+    "start6": "nodemon 6.js",
+    "start7": "nodemon 7.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.20"
+  }
 }
