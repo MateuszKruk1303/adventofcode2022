@@ -1,7 +1,7 @@
 package main
 
 import (
-	"./common"
+	"advent-of-code/7/common"
 	"fmt"
 )
 
@@ -38,7 +38,7 @@ func getItemWeight(letterAsciiCode int32) (weight int32) {
 func main() {
 	var sumOfWeights int32 = 0
 	var data []string
-	scanner := common.GetScanner("./input3.txt")
+	scanner := common.GetScanner("./3/input3.txt")
 
 	for scanner.Scan() {
 		line := scanner.Text()

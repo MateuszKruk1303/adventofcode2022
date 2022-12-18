@@ -1,16 +1,16 @@
 package main
 
 import (
-	"./common"
+	"advent-of-code/7/common"
 	"fmt"
+	"regexp"
+	"strconv"
 	"strings"
 )
 
 const (
-	CD       = "$ cd"
-	BACK     = "$ cd .."
-	LIST     = "$ ls"
-	ROOT_CMD = "$ cd /"
+	BACK = "$ cd .."
+	LIST = "$ ls"
 )
 
 type Directory struct {
@@ -20,10 +20,40 @@ type Directory struct {
 }
 
 var visitedNodes []*Directory
+var totalSumOfContent int64
+
+func filterAndSum() {
+
+	for _, node := range visitedNodes {
+		entryContent := node.content
+		var sumOfContent int64 = 0
+		fmt.Println("=======================================================================")
+		fmt.Println(node.name)
+		for _, item := range entryContent {
+			parsedItem := strings.Split(item, " ")[0]
+			if regexp.MustCompile(`\d`).MatchString(parsedItem) {
+				fmt.Println(parsedItem)
+				converted, _ := strconv.ParseInt(parsedItem, 0, 64)
+				sumOfContent += converted
+			}
+		}
+		fmt.Println("=======================================================================")
+		if sumOfContent <= 100000 {
+			fmt.Println("SUM")
+			fmt.Println(sumOfContent)
+			fmt.Println(totalSumOfContent)
+			fmt.Println(sumOfContent + totalSumOfContent)
+			totalSumOfContent = sumOfContent + totalSumOfContent
+		}
+		fmt.Println("=======================================================================")
+
+		sumOfContent = 0
+	}
+}
 
 func unique(intSlice []string) []string {
 	keys := make(map[string]bool)
-	list := []string{}
+	var list []string
 	for _, entry := range intSlice {
 		if _, value := keys[entry]; !value {
 			keys[entry] = true
@@ -64,7 +94,7 @@ func processDataSample(sample string, currentNode *Directory) *Directory {
 }
 
 func main() {
-	scanner := common.GetScanner("./input.txt")
+	scanner := common.GetScanner("./7/test.txt")
 
 	var currentNode = &Directory{Parent: nil, name: "/"}
 	visitedNodes = append(visitedNodes, currentNode)
@@ -80,6 +110,7 @@ func main() {
 		currentNode = processDataSample(item, currentNode)
 	}
 
-	fmt.Println(visitedNodes)
+	filterAndSum()
+	fmt.Println(totalSumOfContent)
 
 }
